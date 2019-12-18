@@ -7,8 +7,8 @@ I'm reverse engineering a SNDWAY Laser Distance Meter so that I can add magnetom
 ## Follow along
 You can follow along with my progress on [my blog](https://www.cooper-davis.net/blog):
 
-1. [Initial investigations](https://www.cooper-davis.net/blog/ldm-hacking-initial-investigations)
-2. [Serial reading](https://www.cooper-davis.net/blog/ldm-hacking-serial-reading)
+1. [The LDM](https://www.cooper-davis.net/blog/diystox-the-ldm)
+2. [The Wiring](https://www.cooper-davis.net/blog/diystox-the-wiring)
 
 ## Contribute
 Please contribute if you can!
