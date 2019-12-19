@@ -1,6 +1,6 @@
 /*
- *  This file takes readings from the LDM, converts them into m, and adds them to a queue for sending.
- *  When Serial (USB) is available it then sends those readings one by one in chronological order.
+ * 
+ * 
  */
 
 static byte b;
@@ -27,12 +27,19 @@ void _end_measurement() {
    * Perform functions required once a measurement completes succesfully.
    */
 
-  // Convert byte array to float in meters and add to array
-  values[v] = (((long)payload[0] << 24)
-            + ((long)payload[1] << 16)
-            + ((long)payload[2] << 8)
-            + (long)payload[3]) / 10000.0;
-  v += 1;
+  if (v > 29) {
+    // Ignore the most recent measurement if the data array is full
+    digitalWrite(LED_RED, HIGH);
+  }
+  else {
+    // Convert byte array to float in meters and add to array
+    values[v] = (((long)payload[0] << 24)
+              + ((long)payload[1] << 16)
+              + ((long)payload[2] << 8)
+              + (long)payload[3]) / 10000.0;
+              
+    v += 1; 
+  }
 
   // Reset payload variables to all zeros
   for (int i = 0; i < 4; i++){
@@ -92,6 +99,7 @@ void _send_measurement() {
     if (Serial) {
       Serial.println(values[0], 3);
       v -= 1;
+      digitalWrite(LED_RED, LOW);
       
       for (int i = 0; i < 29; i++) {
         values[i] = values[i+1];
