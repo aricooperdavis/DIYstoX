@@ -1,6 +1,7 @@
 /*
- * 
- * 
+ *  This file takes readings from the LDM, converts them into m, and adds
+ *  them to a queue for sending. When Serial (USB) is available it then
+ *  sends those readings one by one in chronological order.
  */
 
 static byte b;
